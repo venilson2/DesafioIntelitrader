@@ -6,23 +6,23 @@ namespace DesafioIntelitrader.Source.UseCase
 {
     internal class ProcessFileUseCase
     {
+        private readonly IReadFileService _readFileService;
         private readonly ITransferService _transferService;
         private readonly IDivergencyService _divergencyService;
         private readonly IChannelSaleService _channelSaleService;
-        private readonly IReadFileService _readFileService;
 
         public ProcessFileUseCase
         (
+            IReadFileService readFileService,
             ITransferService tranferService, 
             IDivergencyService divergencyService, 
-            IChannelSaleService channelSaleService, 
-            IReadFileService readFileService
+            IChannelSaleService channelSaleService 
         )
         {
+            _readFileService = readFileService;
             _transferService = tranferService;
             _divergencyService = divergencyService;
             _channelSaleService = channelSaleService;
-            _readFileService = readFileService;
         }
         public void Flow()
         {
