@@ -2,22 +2,14 @@
 using DesafioIntelitrader.Source.Domain.Entites;
 using DesafioIntelitrader.Source.Domain.Enums;
 using DesafioIntelitrader.Source.Domain.Interfaces.Services;
+using DesafioIntelitrader.Source.Infraestructure.Extensions;
 
 namespace DesafioIntelitrader.Source.Application.Services
 {
     class ChannelSaleService : IChannelSaleService
     {
-        private readonly ISaleService _saleService;
-        
-        public ChannelSaleService(ISaleService saleService)
+        public List<TotalChannelSaleDTO> CalculateQuantityByChannelSale(List<SaleEntity> sales)
         {
-            _saleService = saleService;
-        }
-
-        public List<TotalChannelSaleDTO> CalculateQuantityByChannelSale()
-        {
-            List<SaleEntity> sales = _saleService.ReadFile();
-
             List<SaleEntity> salesFilredBySaleConfirmed = sales.Where(
                 sale =>
                 sale.Situacao_Venda == SaleSituationEnum.venda_confirmada_pagamento_ok ||
@@ -31,7 +23,7 @@ namespace DesafioIntelitrader.Source.Application.Services
             .Select(group => new TotalChannelSaleDTO
             {
                 Id = (int)group.Key,
-                Name = group.Key.ToString(),
+                Name = group.Key.ToDisplayName(),
                 Total = group.Sum(sale => sale.Qtd_Vendida)
             })
             .ToList();  

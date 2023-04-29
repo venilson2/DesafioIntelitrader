@@ -7,20 +7,8 @@ namespace DesafioIntelitrader.Source.Application.Services
 {
     class DivergencyService : IDivergencyService
     {
-        private readonly ISaleService _saleService;
-        private readonly IProductService _productService;
-
-        public DivergencyService(ISaleService saleService, IProductService productService)
+        public List<DivergencyDTO> CalculateDivergency(List<SaleEntity> sales, List<ProductEntity> products)
         {
-            _saleService = saleService;
-            _productService = productService;
-        }
-
-        public List<DivergencyDTO> CalculateDivergency()
-        {
-            List<SaleEntity> sales = _saleService.ReadFile();
-            List<ProductEntity> products = _productService.ReadFile();
-
             var messages = new List<DivergencyDTO>();
             int line = 1;
 

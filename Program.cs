@@ -8,19 +8,12 @@ Directory.SetCurrentDirectory(projectDirectory);
 
 var services = new ServiceCollection();
 
-services.AddScoped<IProductService, ProductService>();
-services.AddScoped<ISaleService, SaleService>();
 services.AddScoped<ITransferService, TransferService>();
 services.AddScoped<IDivergencyService, DivergencyService>();
 services.AddScoped<IChannelSaleService, ChannelSaleService>();
+services.AddScoped<IReadFileService, ReadFileService>();
 
 services.BuildServiceProvider();
 
-var main = 
-    new Main(
-        new TransferService(new SaleService(), new ProductService()),
-        new DivergencyService(new SaleService(), new ProductService()),
-        new ChannelSaleService(new SaleService())
-    );
-
+var main = new Main();
 main.Run();

@@ -5,6 +5,6 @@ namespace DesafioIntelitrader.Source.Domain.Interfaces.Services
 {
     interface IDivergencyService 
     {
-        List<DivergencyDTO> CalculateDivergency();
+        List<DivergencyDTO> CalculateDivergency(List<SaleEntity> sales, List<ProductEntity> products);
     }
 }

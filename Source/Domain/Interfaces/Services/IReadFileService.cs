@@ -2,8 +2,9 @@
 
 namespace DesafioIntelitrader.Source.Domain.Interfaces.Services
 {
-    interface IService<T>
+    internal interface IReadFileService
     {
-        List<T> ReadFile();
+        List<ProductEntity> ReadFileProduct();
+        List<SaleEntity> ReadFileSale();
     }
 }

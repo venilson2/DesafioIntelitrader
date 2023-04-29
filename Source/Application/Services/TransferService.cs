@@ -4,21 +4,10 @@ using DesafioIntelitrader.Source.Domain.Interfaces.Services;
 
 class TransferService : ITransferService
 {
-    private readonly ISaleService _saleService;
-    private readonly IProductService _productService;
-
-    public TransferService(ISaleService saleService, IProductService productService)
+    public List<TransfereDTO> CalculateTransfere(List<ProductEntity> products, List<SaleEntity> sales)
     {
-        _saleService = saleService;
-        _productService = productService;
-    }
-
-    public List<TransfereDTO> CalculateTransfere()
-    {
-        var products = _productService.ReadFile();
-        var salesGroupedByCode = _saleService.GroupProductsByCode();
-
-        var transfereList = new List<TransfereDTO>();
+        List<TransfereDTO> transfereList = new();
+        List<IGrouping<int,SaleEntity>> salesGroupedByCode = sales.GroupBy(p => p.Cod_Produto).ToList();
 
         foreach (var product in products)
         {
