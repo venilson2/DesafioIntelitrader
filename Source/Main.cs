@@ -1,4 +1,5 @@
-﻿using DesafioIntelitrader.Source.Domain.DTO;
+﻿using DesafioIntelitrader.Source.Application.Services;
+using DesafioIntelitrader.Source.Domain.DTO;
 using DesafioIntelitrader.Source.Domain.Entites;
 using DesafioIntelitrader.Source.Domain.Interfaces.Services;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ namespace DesafioIntelitrader.Source
     {
         private readonly ITransferService _transferService;
         private readonly IDivergencyService _divergencyService;
-        public Main(ITransferService tranferService, IDivergencyService divergencyService)
+        private readonly IChannelSaleService _channelSaleService;
+        public Main(ITransferService tranferService, IDivergencyService divergencyService, IChannelSaleService channelSaleService)
         {
             _transferService = tranferService;
             _divergencyService = divergencyService;
+            _channelSaleService = channelSaleService;
         }
         
         public void Run()
@@ -20,6 +23,7 @@ namespace DesafioIntelitrader.Source
 
             List<TransfereDTO> tranfereList = _transferService.CalculateTransfere();
             List<string> divergencyList = _divergencyService.CalculateDivergency();
+            List<TotalChannelSaleDTO>  channelSaleList = _channelSaleService.CalculateQuantityByChannelSale();
 
             Console.WriteLine("--- Tranfer ---");
             Console.WriteLine("| {0,-15} | {1,-15} | {2,-15} | {3,-15} | {4,-15} | {5,-15} | {6,-15} |", "Produto", "QtCO", "QtMin", "QtVendas", "Estoq após venda", "Nescess.", "Trans");

@@ -8,7 +8,7 @@ namespace DesafioIntelitrader.Source.Domain.Entites
         public int Qtd_Vendida { get; set; }
         public SaleSituationEnum Situacao_Venda { get; set; }
         public SaleChannelEnum Canal_Venda { get; set; }
-        
+
         public bool VerifyCode(List<ProductEntity> products)
         {
             bool containCode = products.Any(product => product.Cod_Produto == this.Cod_Produto);
