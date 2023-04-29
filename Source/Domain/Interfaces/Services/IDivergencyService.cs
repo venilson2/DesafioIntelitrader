@@ -1,9 +1,10 @@
-﻿using DesafioIntelitrader.Source.Domain.Entites;
+﻿using DesafioIntelitrader.Source.Domain.DTO;
+using DesafioIntelitrader.Source.Domain.Entites;
 
 namespace DesafioIntelitrader.Source.Domain.Interfaces.Services
 {
     interface IDivergencyService 
     {
-        List<string> CalculateDivergency();
+        List<DivergencyDTO> CalculateDivergency();
     }
 }

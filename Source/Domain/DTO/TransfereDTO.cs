@@ -1,5 +1,4 @@
-﻿
-namespace DesafioIntelitrader.Source.Domain.DTO
+﻿namespace DesafioIntelitrader.Source.Domain.DTO
 {
     internal class TransfereDTO
     {
