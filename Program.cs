@@ -11,9 +11,14 @@ var services = new ServiceCollection();
 services.AddScoped<IProductService, ProductService>();
 services.AddScoped<ISaleService, SaleService>();
 services.AddScoped<ITransferService, TransferService>();
+services.AddScoped<IDivergencyService, DivergencyService>();
 
 services.BuildServiceProvider();
 
-var main = new Main(new TransferService(new SaleService(), new ProductService()));
+var main = 
+    new Main(
+        new TransferService(new SaleService(), new ProductService()),
+        new DivergencyService(new SaleService(), new ProductService())
+    );
 
 main.Run();

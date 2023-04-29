@@ -7,20 +7,14 @@ class TransferService : ITransferService
     private readonly ISaleService _saleService;
     private readonly IProductService _productService;
 
-    public TransferService()
-    {
-    }
-
     public TransferService(ISaleService saleService, IProductService productService)
     {
         _saleService = saleService;
         _productService = productService;
     }
 
-
     public List<TransfereDTO> CalculateTransfere()
     {
-        var sales = _saleService.ReadFile();
         var products = _productService.ReadFile();
         var salesGroupedByCode = _saleService.GroupProductsByCode();
 

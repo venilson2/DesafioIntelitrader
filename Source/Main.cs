@@ -8,17 +8,19 @@ namespace DesafioIntelitrader.Source
     class Main
     {
         private readonly ITransferService _transferService;
-        public Main(ITransferService tranferService)
+        private readonly IDivergencyService _divergencyService;
+        public Main(ITransferService tranferService, IDivergencyService divergencyService)
         {
             _transferService = tranferService;
+            _divergencyService = divergencyService;
         }
         
         public void Run()
         {
 
             List<TransfereDTO> tranfereList = _transferService.CalculateTransfere();
+            List<string> divergencyList = _divergencyService.CalculateDivergency();
 
-            
             Console.WriteLine("--- Tranfer ---");
             Console.WriteLine("| {0,-15} | {1,-15} | {2,-15} | {3,-15} | {4,-15} | {5,-15} | {6,-15} |", "Produto", "QtCO", "QtMin", "QtVendas", "Estoq após venda", "Nescess.", "Trans");
             Console.WriteLine("+{0}{1}{2}{3}{4}{5}{6}+",
