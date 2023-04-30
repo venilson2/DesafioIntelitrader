@@ -5,7 +5,11 @@ namespace DesafioIntelitrader.Source.Application.Services
 {
     class WriteFileService : IWriteFileService
     {
-        private readonly string _filePath = "Source/Files/teste1/";
+        private readonly string _filePath;
+        public WriteFileService(string filePath) 
+        {
+            _filePath = filePath;
+        }
         
         public void WriteFileTransfer(List<TransfereDTO> tranfereList)
         {
@@ -28,12 +32,35 @@ namespace DesafioIntelitrader.Source.Application.Services
 
         public void WriteFileDivergency(List<DivergencyDTO> divergencyList)
         {
-            throw new NotImplementedException();
+            StreamWriter writer = new StreamWriter(_filePath + "c1_divergencias.txt");
+
+            foreach (var item in divergencyList)
+            {
+
+                writer.WriteLine($"Linha {item.Line} - {item.Description}");
+            }
+
+            writer.Close();
         }
 
         public void WriteFileChannelSale(List<TotalChannelSaleDTO> totalChannelSaleList)
         {
-            throw new NotImplementedException();
+            StreamWriter writer = new StreamWriter(_filePath + "c1_totcanal.txt");
+
+            writer.WriteLine("Quantidades de Vendas por canal\n");
+            writer.WriteLine("{0,-20} {1,10}",
+                "Canal", "QtVendas");
+
+            foreach (var item in totalChannelSaleList)
+            {
+                string line = string.Format("{0,-20} {1,10}",
+                    $"{item.Id} - {item.Name}", item.Total.ToString());
+
+                writer.WriteLine(line);
+            }
+
+            writer.Close();
         }
+
     }
 }

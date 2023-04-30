@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DesafioIntelitrader.Source.Domain.DTO
+﻿namespace DesafioIntelitrader.Source.Domain.DTO
 {
     internal class TotalChannelSaleDTO
     {

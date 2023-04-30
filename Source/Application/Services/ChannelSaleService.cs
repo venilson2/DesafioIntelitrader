@@ -26,6 +26,7 @@ namespace DesafioIntelitrader.Source.Application.Services
                 Name = group.Key.ToDisplayName(),
                 Total = group.Sum(sale => sale.Qtd_Vendida)
             })
+            .OrderBy(s => s.Id)
             .ToList();  
 
             return totalChannelSales;

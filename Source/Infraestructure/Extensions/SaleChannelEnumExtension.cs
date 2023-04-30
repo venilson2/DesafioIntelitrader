@@ -9,7 +9,7 @@ namespace DesafioIntelitrader.Source.Infraestructure.Extensions
             switch (channel)
             {
                 case SaleChannelEnum.Representante_comercial:
-                    return "Representante";
+                    return "Representantes";
                 case SaleChannelEnum.Website:
                     return "Website";
                 case SaleChannelEnum.App_móvel_Android:

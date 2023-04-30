@@ -36,8 +36,8 @@ namespace DesafioIntelitrader.Source.UseCase
             List<TotalChannelSaleDTO> channelSaleList = _channelSaleService.CalculateQuantityByChannelSale(sales);
 
             _writeFileService.WriteFileTransfer(tranfereList);
-            //_writeFileService.WriteFileDivergency(divergencyList);
-            //_writeFileService.WriteFileChannelSale(channelSaleList);
+            _writeFileService.WriteFileDivergency(divergencyList);
+            _writeFileService.WriteFileChannelSale(channelSaleList);
         }
     }
 }

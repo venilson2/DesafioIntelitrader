@@ -6,11 +6,12 @@ namespace DesafioIntelitrader.Source.Application.Services
 {
     class ReadFileService : IReadFileService
     {
-        private readonly string _filePath = "Source/Files/teste1/";
+        private readonly string _filePath;
         private readonly FileNameEntity _fileName;
 
-        public ReadFileService(FileNameEntity fileName)
+        public ReadFileService(FileNameEntity fileName, string filePath)
         {
+            _filePath = filePath;
             _fileName = fileName;
         }
         public List<ProductEntity> ReadFileProduct()
