@@ -6,17 +6,16 @@ namespace DesafioIntelitrader.Source.Application.Services
 {
     class ReadFileService : IReadFileService
     {
-        private readonly string _filePathProduct;
-        private readonly string _filePathSale;
+        private readonly string _filePath = "Source/Files/teste1/";
+        private readonly FileNameEntity _fileName;
 
-        public ReadFileService(string filePathSale, string filePathProduct)
+        public ReadFileService(FileNameEntity fileName)
         {
-            _filePathProduct = filePathSale;
-            _filePathSale = filePathProduct;
+            _fileName = fileName;
         }
         public List<ProductEntity> ReadFileProduct()
         {
-            List<ProductEntity> products = File.ReadAllLines(_filePathProduct)
+            List<ProductEntity> products = File.ReadAllLines(_filePath + _fileName.Product)
                 .Select(line => line.Split(';'))
                 .Select(columns => new ProductEntity
                 {
@@ -30,7 +29,7 @@ namespace DesafioIntelitrader.Source.Application.Services
 
         public List<SaleEntity> ReadFileSale()
         {
-            List<SaleEntity> sales = File.ReadAllLines(_filePathSale)
+            List<SaleEntity> sales = File.ReadAllLines(_filePath + _fileName.Sale)
                  .Select(line => line.Split(";"))
                  .Select(columns => new SaleEntity
                  {
